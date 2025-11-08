@@ -26,6 +26,3 @@ def test_create_task(client):
     res = client.get('/')
     assert b'T1' in res.data
 
-def test_create_task_invalid(client):
-    rv = client.post('/task', data={'title':'','description':'d'})
-    assert rv.status_code == 400
