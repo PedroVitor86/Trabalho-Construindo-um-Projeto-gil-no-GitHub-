@@ -12,7 +12,7 @@ def init_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT,
-        status TEXT NOT NULL DEFAULT 'todo'
+        status TEXT NOT NULL DEFAULT 'Fazer'
     )
     ''')
     conn.commit()
@@ -40,7 +40,7 @@ def create_task():
     if not title:
         return "Título é obrigatório", 400
     conn = get_db()
-    conn.execute('INSERT INTO tasks (title,description,status) VALUES (?,?,?)', (title, description, 'todo'))
+    conn.execute('INSERT INTO tasks (title,description,status) VALUES (?,?,?)', (title, description, 'Fazer'))
     conn.commit()
     conn.close()
     return redirect(url_for('index'))
@@ -60,7 +60,7 @@ def toggle_task(task_id):
     if not row:
         conn.close()
         return "Not found", 404
-    new = 'done' if row['status'] != 'done' else 'todo'
+    new = 'Feito' if row['status'] != 'Feito' else 'Fazer'
     conn.execute('UPDATE tasks SET status = ? WHERE id = ?', (new, task_id))
     conn.commit()
     conn.close()
