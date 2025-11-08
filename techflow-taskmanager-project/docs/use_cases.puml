@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+actor "Usuário" as User
+rectangle Sistema {
+  User --> (Criar Tarefa)
+  User --> (Editar Tarefa)
+  User --> (Excluir Tarefa)
+  User --> (Visualizar Tarefas)
+  User --> (Marcar Como Concluída)
+}
+@enduml

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TechFlow Task Manager</title>
+</head>
+<body>
+  <h1>TechFlow Task Manager</h1>
+  <form action="/task" method="post">
+    <input name="title" placeholder="Título" required/>
+    <input name="description" placeholder="Descrição"/>
+    <button type="submit">Adicionar</button>
+  </form>
+  <h2>Tarefas</h2>
+  <ul>
+    {% for t in tasks %}
+      <li>
+        <strong>[{{ t['status'] }}]</strong> {{ t['title'] }} - {{ t['description'] }}
+        <form style="display:inline" action="/task/{{ t['id'] }}/toggle" method="post"><button>Toggle</button></form>
+        <form style="display:inline" action="/task/{{ t['id'] }}/delete" method="post"><button>Deletar</button></form>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
